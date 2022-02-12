@@ -1,60 +1,72 @@
-binary_input = "111001010"
-binary = ""
+conv_type = 0 #sets the type of conversion 1 for binary, 2 for decimal
+value = 0 #value from user input
+binary = [] #sets up list for decimal to binary converter
 
-
+#asks user whether they want to convert from binary to decimal or vice versa
 def ask_user_choice():
     while True:
         try:    
             user_choice = int(input(("What conversion do you want to run?\n1: binary to decimal\n2: decimal to binary\nPlease enter number of your choice:")))
+            if user_choice != 1 and user_choice != 2:
+                continue
             break
         except ValueError:
-            print("Enter number 1 or 2 to make your choice:")
-    if user_choice == 1:
-        get_binary_in()
-    if user_choice == 2:
-
-
+            print("Enter number 1 or 2 to make your choice:\n")
+    return user_choice
+    
 #gets number and checks if its binary      
 def get_binary_in():
     while True:
+        bin_input = input("Enter binary number: ")
         try:
-            bin_input = int(input("Enter binary number: "),2)
+            int(bin_input,2)
             break
         except ValueError:
-            print('Number is not binary!')
+            print("Please enter binary number")
     return bin_input
-                
+
+#gets number and checks if its positive integer                 
 def get_decimal_in():
-    
+    while True:
+        dec_input = input("Enter decimal number: ")
+        try:
+            value = int(dec_input)
+            if value <= 0:
+                print("Please enter positive integer")
+                continue
+            break
+        except ValueError:
+            print("Please enter number")
+    return value
 
-
-if binary_input[0]=="1":
-    binary = binary_input[1:]
-else:
-    binary = binary_input
 #function converts binary number to decimal number
 def bin_to_dec(binary_num):
+    binary_num = str(binary_num) #converts integer to string, for purpose of using len in next step
     decimal = 0
     for i in reversed(range(len(binary_num))):
         decimal = int(binary_num[-(i+1)])*(2**i) + decimal
     return decimal
-print("-"+str(bin_to_dec(binary)))
 
-decimal = "174"
-decimal_num = int(decimal)
-binary = []
-binary_result = ""
-
-
-    print(decimal_num//2)
-    print(decimal_num%2)
+#function converts decimal number to binary number
+def dec_to_bin(decimal_num):
     while decimal_num > 0:
         residue = decimal_num%2
         decimal_num = decimal_num//2
         binary.append(residue)
-        print(residue,decimal_num)
+    binary.reverse()
+    return "".join(map(str,binary))
 
-binary.reverse()
-print(binary)
+#function that decides what type of converter to run
+def run_converter(choice):
+    if choice == 1:
+        value = get_binary_in() #calls function for binary input
+        print(bin_to_dec(value)) #calls and prints binary to decimal converter
+    if choice == 2:
+        value = get_decimal_in() #calls function for decimal input
+        print(dec_to_bin(value)) #calls and prints binary to decimal converter
 
-    
+#defines type of conversion
+conv_type = ask_user_choice()
+
+#runs type of converter according tu users choice
+run_converter(conv_type)
