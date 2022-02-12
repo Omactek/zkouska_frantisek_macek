@@ -11,7 +11,7 @@ def ask_user_choice():
                 continue
             break
         except ValueError:
-            print("Enter number 1 or 2 to make your choice:\n")
+            print("Enter number 1 or 2 to make your choice\n")
     return user_choice
     
 #gets number and checks if its binary      
