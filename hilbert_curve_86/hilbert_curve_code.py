@@ -1,4 +1,3 @@
-from inspect import trace
 import turtle as t
 
 width = 500 #value for the width of turtle window
