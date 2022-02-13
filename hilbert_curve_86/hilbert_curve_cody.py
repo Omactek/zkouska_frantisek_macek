@@ -49,6 +49,9 @@ except OverflowError:
 
 t.setworldcoordinates(0,0,window_width,window_width) #sets coordinates of right corner to 0
 
+#t.tracer(0, 0) #can set off turtle animation
+
 hilbert_curve(order,90) #calls the hilbert function with chosen order
 
+#t.update() #can update turtle
 t.exitonclick()
