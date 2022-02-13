@@ -6,12 +6,13 @@ binary = [] #sets up list for decimal to binary converter
 def ask_user_choice():
     while True:
         try:    
-            user_choice = int(input(("What conversion do you want to run?\n1: binary to decimal\n2: decimal to binary\nPlease enter number of your choice:")))
+            user_choice = int(input(("What conversion do you want to run?\n1: binary to decimal\n2: decimal to binary\nPlease enter number of your choice: ")))
             if user_choice != 1 and user_choice != 2:
+                print("Please enter 1 or 2 to make your choice\n")
                 continue
             break
         except ValueError:
-            print("Enter number 1 or 2 to make your choice\n")
+            print("Please enter number\n")
     return user_choice
     
 #gets number and checks if its binary      
@@ -60,10 +61,10 @@ def dec_to_bin(decimal_num):
 def run_converter(choice):
     if choice == 1:
         value = get_binary_in() #calls function for binary input
-        print(bin_to_dec(value)) #calls and prints binary to decimal converter
+        print(f"Your decimal number is: {bin_to_dec(value)}") #calls and prints binary to decimal converter
     if choice == 2:
         value = get_decimal_in() #calls function for decimal input
-        print(dec_to_bin(value)) #calls and prints binary to decimal converter
+        print(f"Your binary number is: {dec_to_bin(value)}") #calls and prints binary to decimal converter
 
 #defines type of conversion
 conv_type = ask_user_choice()
