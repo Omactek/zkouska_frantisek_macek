@@ -5,7 +5,7 @@ value = 0
 #sets up list for decimal to binary converter
 binary = []
 
-#asks user whether they want to convert from binary to decimal or vice versa
+#asks user whether user wants to convert from binary to decimal or vice versa
 def ask_user_choice():
     while True:
         try:    
