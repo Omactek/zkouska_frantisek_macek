@@ -1,10 +1,13 @@
 import turtle as t
 
-width = 500 #value for the width of turtle window
-window_width = width + width/100 #takes care of turtle window margin
-order = 0 #value for order, is equal to recursion depth
+#value for the width of turtle window
+width = 500
+#takes care of turtle window margin
+window_width = width + width/100
+#value for order, is equal to recursion depth
+order = 0
 
-#function that asks for user input
+#function that asks for user input and catches wrong input
 def user_input():
     while True:
         try:
@@ -17,7 +20,7 @@ def user_input():
             print("Please enter number.")
     return order_input
 
-#function draws hilbert curve
+#function uses recursion to draw Hilbert curve based on angle and order
 def hilbert_curve(order, angle):
     if order == 0:
         return
@@ -34,23 +37,34 @@ def hilbert_curve(order, angle):
     hilbert_curve(order-1, -angle)
     t.left(angle)
 
-t.speed(0) #sets speed of turtle
+#sets speed of turtle
+t.speed(0)
+
+#sets up turtle window to chosen width
 sc = t.Screen()
-sc.setup(window_width, window_width) #sets up turtle window to chosen width
+sc.setup(window_width, window_width)
 
-order = user_input() #sets order of hilbert curve
+#sets order of hilbert curve
+order = user_input()
 
+#calculates the distance for one instance
 try:
-    distance = width/(2**order-1) #calculates the distance for one instance
+    distance = width/(2**order-1)
+#quits if number is outside the scope of programs computing abilities
 except OverflowError:
     print("Error: you entered too big number for order")
     quit()
 
-t.setworldcoordinates(0,0,window_width,window_width) #sets coordinates of right corner to 0
+#sets coordinates of right corner to 0
+t.setworldcoordinates(0,0,window_width,window_width)
 
-#t.tracer(0, 0) #can set off turtle animation
+#can set off turtle animation
+#t.tracer(0, 0)
 
-hilbert_curve(order,90) #calls the hilbert function with chosen order
+#calls the hilbert function with chosen order
+hilbert_curve(order,90)
 
-#t.update() #can update turtle
+#can update turtle
+#t.update()
+
 t.exitonclick()

@@ -1,6 +1,9 @@
-conv_type = 0 #sets the type of conversion 1 for binary, 2 for decimal
-value = 0 #value from user input
-binary = [] #sets up list for decimal to binary converter
+#sets the type of conversion 1 for binary, 2 for decimal
+conv_type = 0
+#value from user input
+value = 0 
+#sets up list for decimal to binary converter
+binary = []
 
 #asks user whether they want to convert from binary to decimal or vice versa
 def ask_user_choice():
@@ -42,10 +45,11 @@ def get_decimal_in():
 
 #function converts binary number to decimal number
 def bin_to_dec(binary_num):
-    binary_num = str(binary_num) #converts integer to string, for purpose of using len in next step
+    #converts integer to string, for purpose of using len in next step
+    binary_num = str(binary_num)
     decimal = 0
-    for i in reversed(range(len(binary_num))):
-        decimal = int(binary_num[-(i+1)])*(2**i) + decimal
+    for i in range(len(binary_num)):
+        decimal += int(binary_num[-(i+1)])*(2**i)
     return decimal
 
 #function converts decimal number to binary number
@@ -60,11 +64,15 @@ def dec_to_bin(decimal_num):
 #function that decides what type of converter to run
 def run_converter(choice):
     if choice == 1:
-        value = get_binary_in() #calls function for binary input
-        print(f"Your decimal number is: {bin_to_dec(value)}") #calls and prints binary to decimal converter
+        #calls function for binary input
+        value = get_binary_in()
+        #calls and prints binary to decimal converter
+        print(f"Your decimal number is: {bin_to_dec(value)}")
     if choice == 2:
-        value = get_decimal_in() #calls function for decimal input
-        print(f"Your binary number is: {dec_to_bin(value)}") #calls and prints binary to decimal converter
+        #calls function for decimal input
+        value = get_decimal_in()
+        #calls and prints deciaml to binary converter
+        print(f"Your binary number is: {dec_to_bin(value)}")
 
 #defines type of conversion
 conv_type = ask_user_choice()
